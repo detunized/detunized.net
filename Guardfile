@@ -1,6 +1,3 @@
-guard 'livereload', :host => 'localhost', :port => 4001 do
-#guard :shell do
-    watch /.*/ do |m|
-        "'#{m}' changed"
-    end
+guard :livereload do
+    watch %r{_site/.*}
 end
