@@ -49,7 +49,7 @@ Dir[File.join SRC_DIR, 'photo', '[0-9][0-9][0-9][0-9]*'].each do |dir|
     # Copy the photos
     mkdir_p gallery_dir
     image_filenames(dir).each_with_index do |image, index|
-        cp image, File.join(gallery_dir, "%03d-#{name}.jpg" % index)
+        cp image, File.join(gallery_dir, "%03d-#{name}.jpg" % (index + 1))
     end
 
     # Copy the banner
