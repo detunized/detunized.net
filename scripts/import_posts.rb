@@ -41,10 +41,10 @@ rm_rf DST_DIR
 Dir[File.join SRC_DIR, 'photo', '[0-9][0-9][0-9][0-9]*'].each do |dir|
     original_name = File.basename dir
     year, month, name = original_name.match(/(\d{4})-(\d{2})-(.*)/).captures
-    title = name.gsub(/[_-]/, ' ').split(' ').map(&:capitalize).join ' '
+    name = name.gsub('_', '-')
+    title = name.gsub('-', ' ').split(' ').map(&:capitalize).join ' '
 
-    new_name = "#{year}-#{month}-01-#{name}"
-    gallery_dir = File.join DST_DIR, new_name
+    gallery_dir = File.join DST_DIR, "#{year}-#{month}-01-#{name}"
 
     # Copy the photos
     mkdir_p gallery_dir
@@ -54,6 +54,10 @@ Dir[File.join SRC_DIR, 'photo', '[0-9][0-9][0-9][0-9]*'].each do |dir|
 
     # Copy the banner
     cp File.join(dir, "#{original_name}.jpg"), File.join(gallery_dir, "title.jpg")
-end
 
-# TODO: Create posts here
+    # Create a post for this gallery
+    sh "./create_post.rb --name '#{title}'" \
+                       " --event-date '#{year}-#{month}-01'" \
+                       " --post-date '#{year}-#{month}-01'" \
+                       " --image-path '#{gallery_dir}'"
+end
