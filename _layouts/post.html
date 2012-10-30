@@ -1,8 +1,20 @@
+<!doctype html>
 <html>
 <head>
     <title>{{ page.title }}</title>
 </head>
 <body>
-    {{ content }}
+    <h1>{{ page.title }}</h1>
+
+    {% for image in page.images %}
+        <img src="../../../galleries/{{ page.folder }}/{{ image }}" alt="{{ image }}"><br>
+    {% endfor %}
+
+    {% if page.previous %}
+        <a href="{{ page.previous.url }}">Previous</a>
+    {% endif %}
+    {% if page.next %}
+        <a href="{{ page.next.url }}">Next</a>
+    {% endif %}
 </body>
 </html>

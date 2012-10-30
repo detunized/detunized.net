@@ -1,8 +1,9 @@
 ---
 layout: index
-title: Detunized Photo Blog
+title: Detunized Gravy
 ---
+<h1>{{ page.title }}</h1>
 
 {% for post in site.posts %}
-<a href="{{post.url}}">{{ post.title }}</a>
+<a href="{{ post.url }}"><img src="galleries/{{ post.folder }}/title.jpg" alt="{{ post.title }}"></a>
 {% endfor %}

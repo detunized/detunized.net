@@ -53,7 +53,7 @@ Dir[File.join SRC_DIR, 'photo', '[0-9][0-9][0-9][0-9]*'].each do |dir|
     end
 
     # Copy the banner
-    cp File.join(dir, "#{original_name}.jpg"), File.join(gallery_dir, "#{new_name}.jpg")
+    cp File.join(dir, "#{original_name}.jpg"), File.join(gallery_dir, "title.jpg")
 end
 
 # TODO: Create posts here
