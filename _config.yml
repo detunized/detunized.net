@@ -1,2 +1,2 @@
 auto: true
-exclude: [Gemfile, Gemfile.lock, Guardfile, scripts, galleries]
+exclude: [Gemfile, Gemfile.lock, Guardfile, scripts]
