@@ -1,9 +1,5 @@
 #!/usr/bin/env ruby
 
-# TODO:
-#  - Create folders and name files appropriately (currently relies on the existing structure)
-#  - Fix todos in the code
-
 require 'date'
 require 'rake'
 require 'yaml'
@@ -82,7 +78,6 @@ post_slug = [post_date.strftime('%Y-%m-%d'), sanitized_name, event_date.strftime
 # Gallery subdirectory
 gallery_subdir = "#{event_date.strftime '%Y-%m-%d'}-#{sanitized_name}"
 
-# TODO: Check that there are some images present
 # TODO: Check that there are no strangely named images
 src_images = Dir[File.join parameters['image-path'], "[0-9][0-9][0-9]." + (parameters['convert'] ? 'tif' : 'jpg')]
 dst_images = src_images.map { |i| i.pathmap "%n-#{sanitized_name}.jpg" }
