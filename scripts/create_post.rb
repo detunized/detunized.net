@@ -8,12 +8,18 @@ require 'date'
 require 'rake'
 require 'yaml'
 require 'trollop'
+require 'rmagick'
 
 require_relative 'convert'
 
 ROOT = File.exists?('./_posts') ? './' : '../'
 GALLERY_PATH = File.join ROOT, 'galleries'
 POST_PATH = File.join ROOT, '_posts'
+
+BANNER_FILENAME = 'title.jpg'
+
+BANNER_WIDTH = 750
+BANNER_HEIGHT = 150
 
 if not File.exists? POST_PATH
     abort 'The script must be run from the root of the repo or from scripts'
@@ -37,6 +43,11 @@ parameters = Trollop.options do
         :required => true,
         :type => :string
 
+    opt 'banner',
+        'Banner filename',
+        :required => true,
+        :type => :string
+
     # Optional
     opt 'post-date',
         'Override post date (YYYY-MM-DD, default is now)',
@@ -44,11 +55,6 @@ parameters = Trollop.options do
 
     opt 'description',
         'Gallery description',
-        :type => :string
-
-    # TODO: Make required
-    opt 'banner',
-        'Banner filename (default is <name>.jpg)',
         :type => :string
 
     opt 'force',
@@ -85,6 +91,21 @@ if src_images.empty?
     abort "No images found at '#{parameters['image-path']}'"
 end
 
+if !File.exists? parameters['banner']
+    abort "Banner is not found at '#{parameters['banner']}'"
+end
+
+# Verify that the banner is of correct format and dimensions
+begin
+    banner = Magick::Image.read(parameters['banner']).first
+    if banner.format != 'JPEG' || banner.columns != BANNER_WIDTH || banner.rows != BANNER_HEIGHT
+        abort "Banner should be a #{BANNER_WIDTH}x#{BANNER_HEIGHT} JPEG file " \
+              "(found: #{banner.format}, #{banner.columns}x#{banner.rows})"
+    end
+rescue Magick::ImageMagickError => error
+    abort "Banner doesn't seem to be a JPEG file"
+end
+
 # Fail if gallery exists already, unless run with --force
 gallery_path = File.join GALLERY_PATH, gallery_subdir
 if File.exists? gallery_path
@@ -110,6 +131,14 @@ src_images.each_with_index do |image, index|
     else
         cp image, dst
     end
+end
+
+# Copy or move the banner
+banner_dst = File.join(gallery_path, BANNER_FILENAME)
+if parameters['move-images']
+    mv parameters['banner'], banner_dst
+else
+    cp parameters['banner'], banner_dst
 end
 
 # YAML front matter
