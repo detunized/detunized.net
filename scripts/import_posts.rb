@@ -6,7 +6,6 @@ require 'rake'
 require 'tmpdir'
 
 SRC_DIR = '../../detunized.net'
-DST_DIR = '../galleries'
 
 def image_filenames_simpleviewer gallery_path
     gallery_xml = File.read File.join gallery_path, 'gallery.xml'
@@ -36,9 +35,6 @@ def image_filenames gallery_path
         image_filenames_html gallery_path
     end
 end
-
-# Clean first
-rm_rf DST_DIR
 
 # Copy images
 Dir[File.join SRC_DIR, 'photo', '[0-9][0-9][0-9][0-9]*'].each do |dir|
