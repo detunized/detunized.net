@@ -1,6 +1,9 @@
 #!/usr/bin/env ruby
 
+# This script imports old posts from blog.detunized.net
+
 require 'rake'
+require 'tmpdir'
 
 SRC_DIR = '../../detunized.net'
 DST_DIR = '../galleries'
@@ -44,20 +47,23 @@ Dir[File.join SRC_DIR, 'photo', '[0-9][0-9][0-9][0-9]*'].each do |dir|
     name = name.gsub('_', '-')
     title = name.gsub('-', ' ').split(' ').map(&:capitalize).join ' '
 
-    gallery_dir = File.join DST_DIR, "#{year}-#{month}-01-#{name}"
+    Dir.mktmpdir do |tmp_dir|
+        # Copy images
+        image_filenames(dir).each_with_index do |image, index|
+            cp image, File.join(tmp_dir, "%03d.jpg" % (index + 1))
+        end
 
-    # Copy the photos
-    mkdir_p gallery_dir
-    image_filenames(dir).each_with_index do |image, index|
-        cp image, File.join(gallery_dir, "%03d-#{name}.jpg" % (index + 1))
+        # Copy the banner
+        banner_filename = File.join tmp_dir, "title.jpg"
+        cp File.join(dir, "#{original_name}.jpg"), banner_filename
+
+        # Create a post for this gallery
+        sh "./create_post.rb --name '#{title}'" \
+                           " --event-date '#{year}-#{month}-01'" \
+                           " --post-date '#{year}-#{month}-01'" \
+                           " --image-path '#{tmp_dir}'" \
+                           " --banner '#{banner_filename}'" \
+                           " --no-convert" \
+                           " --move-images"
     end
-
-    # Copy the banner
-    cp File.join(dir, "#{original_name}.jpg"), File.join(gallery_dir, "title.jpg")
-
-    # Create a post for this gallery
-    sh "./create_post.rb --name '#{title}'" \
-                       " --event-date '#{year}-#{month}-01'" \
-                       " --post-date '#{year}-#{month}-01'" \
-                       " --image-path '#{gallery_dir}'"
 end
