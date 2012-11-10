@@ -42,6 +42,7 @@ Dir[File.join SRC_DIR, 'photo', '[0-9][0-9][0-9][0-9]*'].each do |dir|
     year, month, name = original_name.match(/(\d{4})-(\d{2})-(.*)/).captures
     name = name.gsub('_', '-')
     title = name.gsub('-', ' ').split(' ').map(&:capitalize).join ' '
+    post_date = File.mtime(dir).strftime '%Y-%m-%d'
 
     Dir.mktmpdir do |tmp_dir|
         # Copy images
@@ -56,7 +57,7 @@ Dir[File.join SRC_DIR, 'photo', '[0-9][0-9][0-9][0-9]*'].each do |dir|
         # Create a post for this gallery
         sh "./create_post.rb --name '#{title}'" \
                            " --event-date '#{year}-#{month}-01'" \
-                           " --post-date '#{year}-#{month}-01'" \
+                           " --post-date '#{post_date}'" \
                            " --image-path '#{tmp_dir}'" \
                            " --banner '#{banner_filename}'" \
                            " --no-convert" \
