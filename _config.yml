@@ -1,2 +1,2 @@
-auto: true
-exclude: [Gemfile, Gemfile.lock, Guardfile, scripts]
+exclude: [Gemfile, Gemfile.lock, Guardfile, Rakefile, scripts]
+permalink: ./:year-:month-:day-:title.html
