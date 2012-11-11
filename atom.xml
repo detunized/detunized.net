@@ -1,0 +1,33 @@
+---
+layout: nil
+---
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+    <title>Detunized Gravy</title>
+    <link href="{{ site.url }}{{ site.baseurl }}"/>
+    <link type="application/atom+xml" rel="self" href="{{ site.url }}{{ site.baseurl }}/atom.xml"/>
+    <updated>{{ site.time | date_to_xmlschema }}</updated>
+    <id>{{ site.url }}{{ site.baseurl }}</id>
+    <author>
+        <name>{{ site.author.name }}</name>
+        <email>{{ site.author.email }}</email>
+    </author>
+
+    {% for post in site.posts %}
+    <entry>
+        <id>{{ site.url }}{{ site.baseurl }}/{{ post.url }}</id>
+        <link type="text/html" rel="alternate" href="{{ site.url }}{{ site.baseurl }}/{{ post.url }}"/>
+        <title>{{ post.title }}</title>
+        <published>{{ post.date | date_to_xmlschema }}</published>
+        <updated>{{ post.date | date_to_xmlschema }}</updated>
+        <author>
+            <name>{{ site.author.name }}</name>
+            <uri>{{ site.url }}{{ site.baseurl }}/</uri>
+        </author>
+        {% capture banner_with_link %}<a href="{{ site.url }}{{ site.baseurl }}/{{ post.url }}"><img src="{{ site.url }}{{ site.baseurl }}/galleries/{{ post.folder }}/title.jpg" alt="{{ post.title }}"></a>{% endcapture %}
+        <content type="html">{{ banner_with_link | xml_escape }}</content>
+    </entry>
+    {% endfor %}
+
+</feed>
