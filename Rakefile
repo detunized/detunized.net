@@ -11,3 +11,11 @@ end
 task :backup do
     sh "rsync -avPk _site/ ~/Dropbox/detunized.net/"
 end
+
+task :server do
+    sh "jekyll --server --auto"
+end
+
+task :live_reload do
+    sh "bundle exec guard -i"
+end
