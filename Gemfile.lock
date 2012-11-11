@@ -16,8 +16,6 @@ GEM
       em-websocket (>= 0.2.0)
       guard (>= 1.1.0)
       multi_json (~> 1.0)
-    guard-shell (0.5.1)
-      guard (>= 1.1.0)
     listen (0.5.3)
     lumberjack (1.0.2)
     method_source (0.8.1)
@@ -36,5 +34,4 @@ PLATFORMS
 DEPENDENCIES
   guard
   guard-livereload
-  guard-shell
   rb-fsevent
