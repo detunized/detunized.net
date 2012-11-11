@@ -1,2 +1,10 @@
-exclude: [Gemfile, Gemfile.lock, Guardfile, Rakefile, scripts]
+# Jekyll config
+exclude:
+- Gemfile
+- Gemfile.lock
+- Guardfile
+- Rakefile
+- galleries
+- scripts
+
 permalink: ./:year-:month-:day-:title.html
