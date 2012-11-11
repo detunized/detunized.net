@@ -7,3 +7,7 @@ end
 task :deploy => :generate do
     sh "rsync -avP --delete -e ssh _site/* detunized.net:www/detunized.net/new_blog/"
 end
+
+task :backup do
+    sh "rsync -avP _site/* ~/Dropbox/detunized.net/"
+end
