@@ -13,7 +13,7 @@ task :backup do
 end
 
 task :server do
-    sh "jekyll --server --auto"
+    sh "jekyll --server --auto --url http://localhost:4000 --base-url /new_blog"
 end
 
 task :live_reload do
