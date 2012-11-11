@@ -3,7 +3,10 @@ require 'yaml'
 module Jekyll
     class SymbolicLink < StaticFile
         def write dest
-            FileUtils.ln_s path, destination(dest)
+            # Delete symlink first. Otherwise it creates a link inside a linked directory.
+            dst_path = destination(dest)
+            FileUtils.rm dst_path if File.exists? dst_path
+            FileUtils.ln_s path, dst_path
         end
     end
 
