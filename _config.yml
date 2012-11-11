@@ -8,3 +8,10 @@ exclude:
 - scripts
 
 permalink: ./:year-:month-:day-:title.html
+url: http://detunized.net/new_blog
+
+# Custom site config
+name: Detunized Gravy
+author:
+    name: Dmitry Yakimenko
+    email: detunized.spam@gmail.com
