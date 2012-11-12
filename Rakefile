@@ -19,3 +19,9 @@ end
 task :live_reload do
     sh "bundle exec guard -i"
 end
+
+task :start do
+    sh %q(tmux new-session -d -s server -n window "rake server")
+    sh %q(tmux split-window -v -t server:window "rake live_reload")
+    sh %q(tmux attach-session -t server)
+end
