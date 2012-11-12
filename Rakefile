@@ -25,3 +25,7 @@ task :start do
     sh %q(tmux split-window -v -t server:window "rake live_reload")
     sh %q(tmux attach-session -t server)
 end
+
+task :stop do
+    sh %q(tmux kill-session -t server)
+end
