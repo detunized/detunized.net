@@ -9,7 +9,7 @@ task :deploy => :generate do
 end
 
 task :backup do
-    sh "rsync -avPk _site/ ~/Dropbox/detunized.net/"
+    sh "rsync -avPk --delete _site/ ~/Dropbox/detunized.net/"
 end
 
 task :server do
