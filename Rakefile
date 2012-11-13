@@ -21,7 +21,7 @@ task :live_reload do
 end
 
 task :start do
-    sh %q(tmux new-session -d -s server -n window "rake server")
+    sh %q(tmux new-session -d -s server -n window "rake server" \\; set-option remain-on-exit on)
     sh %q(tmux split-window -v -t server:window "rake live_reload")
     sh %q(tmux attach-session -t server)
 end
