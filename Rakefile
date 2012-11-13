@@ -27,5 +27,8 @@ task :start do
 end
 
 task :stop do
-    sh %q(tmux kill-session -t server)
+    sh %q(tmux send-keys -t server:window.0 "C-c")
+    sh %q(tmux send-keys -t server:window.1 "C-c")
+    sleep 2
+    sh %q(tmux kill-window -t server:window)
 end
