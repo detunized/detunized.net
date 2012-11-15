@@ -9,6 +9,7 @@ exclude:
 
 permalink: ./:year-:month-:day-:title.html
 url: http://detunized.net/new_blog
+paginate: 15
 
 # Custom site config
 name: Detunized Gravy

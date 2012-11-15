@@ -3,6 +3,16 @@ layout: index
 ---
 <h1>{{ site.name }}</h1>
 
-{% for post in site.posts %}
-<a href="{{ post.url }}"><img src="galleries/{{ post.folder }}/title.jpg" alt="{{ post.title }}"></a>
+{% for post in paginator.posts %}
+<a href="{{ site.baseurl }}/{{ post.url }}"><img src="{{ site.baseurl }}/galleries/{{ post.folder }}/title.jpg" alt="{{ post.title }}"></a>
 {% endfor %}
+
+<br>
+
+{% if paginator.previous_page %}
+<a href="{{ site.baseurl }}/{% if paginator.previous_page > 1 %}page{{ paginator.previous_page }}{% endif %}">Previous</a>
+{% endif %}
+
+{% if paginator.next_page %}
+<a href="{{ site.baseurl }}/page{{ paginator.next_page }}">Next</a>
+{% endif %}
