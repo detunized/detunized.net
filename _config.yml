@@ -8,7 +8,8 @@ exclude:
 - scripts
 
 permalink: ./:year-:month-:day-:title.html
-url: http://detunized.net/new_blog
+url: http://detunized.net
+baseurl: /new_blog
 paginate: 15
 
 # Custom site config
