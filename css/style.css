@@ -1,0 +1,104 @@
+---
+---
+/* Global settings */
+{% assign banner_width = 750 %}
+{% assign banner_border_width = 2 %}
+{% capture content_width %}{{ banner_border_width | times: 2 | plus: banner_width }}{% endcapture %}
+
+/* Shared elements */
+{% capture small_black_text_shadow %}text-shadow: 1px 1px 3px #000;{% endcapture %}
+
+/* Reset */
+html, body, div, img, h2 {
+    margin: 0;
+    padding: 0;
+    display: block;
+}
+
+/* Global settings */
+* {
+    font-family: Georgia;
+    font-weight: normal;
+}
+
+body {
+    background-color: #444;
+}
+
+#page {
+}
+
+#content {
+    width: {{ content_width }}px;
+    margin: 0 auto;
+}
+
+#header {
+    margin-top: 0.2em;
+
+    color: #eee;
+    font-size: 2.5em;
+    text-shadow: 2px 2px 4px #000;
+}
+
+#navigation {
+    margin-top: 1em;
+
+    overflow: auto; /* This resets floats on "older" and "newer" link divs. Oh, CSS. */
+}
+
+#navigation a {
+    color: #eee;
+    {{ small_black_text_shadow }}
+}
+
+#older {
+    float: left;
+}
+
+#newer {
+    float: right;
+}
+
+{% capture copyright_text %}
+    color: #ddd;
+    {{ small_black_text_shadow }}
+{% endcapture %}
+
+#copyright {
+    margin-top: 1em;
+    margin-bottom: 1em;
+
+    text-align: right;
+    {{ copyright_text }}
+}
+
+#copyright a {
+    {{ copyright_text }}
+}
+
+#posts {
+    margin-top: 1.2em;
+}
+
+.post {
+}
+
+.first_post {
+}
+
+.next_post {
+    margin-top: 1.5em;
+}
+
+.banner {
+    border: #fff solid {{ banner_border_width }}px;
+}
+
+h2 {
+    padding: 2px 10px;
+
+    background-color: #fff;
+    color: #444;
+    text-shadow: 1px 1px 3px #555;
+}

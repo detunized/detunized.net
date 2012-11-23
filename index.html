@@ -1,18 +1,46 @@
 ---
 layout: index
 ---
-<h1>{{ site.name }}</h1>
+<div id="page">
+    <div id="content">
+        <div id="header">
+            {{ site.name }}
+        </div>
+        <div id="posts">
+            {% for post in paginator.posts %}
+                {% if forloop.first %}
+                    {% assign post_class = "first_post" %}
+                {% else %}
+                    {% assign post_class = "next_post" %}
+                {% endif %}
 
-{% for post in paginator.posts %}
-<a href="{{ site.baseurl }}/{{ post.url }}"><img src="{{ site.baseurl }}/galleries/{{ post.folder }}/title.jpg" alt="{{ post.title }}"></a>
-{% endfor %}
+                <div class="post {{ post_class }}">
+                    <h2>{{ post.title }}</h2>
+                    <a href="{{ site.baseurl }}/{{ post.url }}">
+                        <img class="banner" src="{{ site.baseurl }}/galleries/{{ post.folder }}/title.jpg" alt="{{ post.title }}">
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+        <div id="navigation">
+            <div id="older">
+                {% if paginator.next_page %}
+                    <a href="{{ site.baseurl }}/page{{ paginator.next_page }}">
+                        &larr; Older
+                    </a>
+                {% endif %}
+            </div>
 
-<br>
-
-{% if paginator.previous_page %}
-<a href="{{ site.baseurl }}/{% if paginator.previous_page > 1 %}page{{ paginator.previous_page }}{% endif %}">Previous</a>
-{% endif %}
-
-{% if paginator.next_page %}
-<a href="{{ site.baseurl }}/page{{ paginator.next_page }}">Next</a>
-{% endif %}
+            <div id="newer">
+                {% if paginator.previous_page %}
+                    <a href="{{ site.baseurl }}/{% if paginator.previous_page > 1 %}page{{ paginator.previous_page }}{% endif %}">
+                        Newer &rarr;
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+        <div id="copyright">
+            &copy; 2008&ndash;{{ site.time | date: "%Y" }} <a href="mailto:{{ site.author.email }}">{{ site.author.name }}</a>
+        </div>
+    </div>
+</div>
