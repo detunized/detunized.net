@@ -29,7 +29,7 @@ body {
 }
 
 #content {
-    width: {{ content_width }}px;
+    display: table;
     margin: 0 auto;
 }
 
@@ -105,4 +105,9 @@ h2 {
     background-color: #fff;
     color: #444;
     text-shadow: 1px 1px 3px #555;
+}
+
+.photo {
+    border: 12px solid #fff;
+    margin-top: 1.8em;
 }
