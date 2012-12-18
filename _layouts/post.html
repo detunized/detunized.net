@@ -3,18 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>{{ page.title }}</title>
-
     <link href="{{ site.baseurl }}/css/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <div id="page">
         <div id="content">
-            <div id="header"><h1 id="logo">{{ page.title }}</h1></div>
-
+            <div id="header">
+                <h1 id="logo">{{ page.title }}</h1>
+            </div>
             {% for image in page.images %}
                 <img class="photo" src="galleries/{{ page.folder }}/{{ image }}" alt="{{ image }}">
             {% endfor %}
-
             <div id="navigation">
                 <div id="older">
                     {% if page.previous %}
