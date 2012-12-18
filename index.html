@@ -39,8 +39,6 @@ layout: index
                 {% endif %}
             </div>
         </div>
-        <div id="copyright">
-            &copy; 2008&ndash;{{ site.time | date: "%Y" }} <a href="mailto:{{ site.author.email }}">{{ site.author.name }}</a>
-        </div>
+        {% include copyright.html %}
     </div>
 </div>
