@@ -4,7 +4,8 @@ layout: index
 <div id="page">
     <div id="content">
         <div id="header">
-            <a id="logo" href="{{ site.baseurl }}/">{{ site.name }}</a>
+            <a href="{{ site.baseurl }}/">{{ site.name }}</a>
+            <a id="icon" class="icon" href="{{ site.baseurl }}/atom.xml">&AElig;</a>
         </div>
         <div id="posts">
             {% for post in paginator.posts %}
@@ -13,7 +14,6 @@ layout: index
                 {% else %}
                     {% assign post_class = "next_post" %}
                 {% endif %}
-
                 <div class="post {{ post_class }}">
                     <h2>{{ post.title }}</h2>
                     <a href="{{ site.baseurl }}/{{ post.url }}">
@@ -30,7 +30,6 @@ layout: index
                     </a>
                 {% endif %}
             </div>
-
             <div id="newer">
                 {% if paginator.previous_page %}
                     <a href="{{ site.baseurl }}/{% if paginator.previous_page > 1 %}page{{ paginator.previous_page }}{% endif %}">

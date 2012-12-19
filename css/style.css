@@ -21,6 +21,29 @@ html, body, div, img, h2 {
     font-weight: normal;
 }
 
+/* Icon font (from http://icons.marekventur.de/) */
+@font-face {font-family:
+    'RaphaelIcons';
+    src: url('../fonts/raphaelicons-webfont.eot');
+    src: local('☺'),
+         url('../fonts/raphaelicons-webfont.woff') format('woff'),
+         url('../fonts/raphaelicons-webfont.ttf') format('truetype'),
+         url('../fonts/raphaelicons-webfont.svg#webfontKOf9F4sx') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Icon class (from http://icons.marekventur.de/) */
+.icon {
+    font-weight: normal;
+    font-style: normal;
+    line-height: normal;
+    font-family: 'RaphaelIcons';
+    font-size: 1.1em;
+    position: relative;
+    top: 0.1em;
+}
+
 body {
     background-color: #444;
 }
@@ -33,15 +56,24 @@ body {
     margin: 0 auto;
 }
 
+{% capture header_color %}
+    color: #eee;
+{% endcapture %}
+
 #header {
     margin-top: 0.2em;
-}
-
-#logo {
-    color: #eee;
     font-size: 2.5em;
     text-shadow: 2px 2px 4px #000;
+    {{ header_color }}
+}
+
+#header a {
     text-decoration: none;
+    {{ header_color }}
+}
+
+#header #icon {
+    float: right;
 }
 
 #navigation {
