@@ -5,9 +5,15 @@ task :setup do
         system "which #{command} >/dev/null"
     end
 
+    # Install dependencies
     sh "brew install tmux" unless installed? "tmux"
     sh "brew install imagemagick --with-libtiff --with-quantum-depth-16" unless installed? "convert"
     sh "bundle install"
+
+    # Copy data from Dropbox and normalize permissions
+    sh "rsync -avP ~/Dropbox/detunized.net/galleries ./"
+    sh "find galleries -type d ! -perm 755 -print0 | xargs -0 chmod 755"
+    sh "find galleries -type f ! -perm 644 -print0 | xargs -0 chmod 644"
 end
 
 task :generate do
