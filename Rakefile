@@ -1,5 +1,15 @@
 task :default => :generate
 
+task :setup do
+    def installed? command
+        system "which #{command} >/dev/null"
+    end
+
+    sh "brew install tmux" unless installed? "tmux"
+    sh "brew install imagemagick --with-libtiff --with-quantum-depth-16" unless installed? "convert"
+    sh "bundle install"
+end
+
 task :generate do
     sh "jekyll"
 end
