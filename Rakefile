@@ -24,11 +24,11 @@ task :deploy => :generate do
     sh "rsync -avPk --delete -e ssh _site/ detunized.net:www/detunized.net/new_blog/"
 end
 
-task :backup do
+task :backup => :generate do
     sh "rsync -avPk --delete _site/ ~/Dropbox/detunized.net/"
 end
 
-task :server do
+task :server => :generate do
     sh "bundle exec jekyll --server --auto --url http://localhost:4000 --base-url /new_blog"
 end
 
