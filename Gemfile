@@ -1,6 +1,9 @@
 source "https://rubygems.org"
 
+gem 'rake'
 gem 'jekyll'
+gem 'trollop'
+gem 'rmagick'
 
 group :development do
     gem 'guard'
