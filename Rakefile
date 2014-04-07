@@ -17,7 +17,7 @@ task :setup do
 end
 
 task :generate do
-    sh "jekyll"
+    sh "jekyll build"
 end
 
 task :deploy => :generate do
@@ -29,7 +29,7 @@ task :backup => :generate do
 end
 
 task :server => :generate do
-    sh "bundle exec jekyll --server --auto --url http://localhost:4000 --base-url /new_blog"
+    sh "bundle exec jekyll serve --watch --baseurl /new_blog"
 end
 
 task :live_reload do
