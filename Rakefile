@@ -21,7 +21,7 @@ task :generate do
 end
 
 task :deploy => :generate do
-    sh "rsync -avPk --delete -e ssh _site/ detunized.net:www/detunized.net/new_blog/"
+    sh "rsync -avPk -e ssh _site/ detunized.net:www/detunized.net/"
 end
 
 task :backup => :generate do
@@ -29,7 +29,7 @@ task :backup => :generate do
 end
 
 task :server => :generate do
-    sh "bundle exec jekyll serve --watch --baseurl /new_blog"
+    sh "bundle exec jekyll serve --watch"
 end
 
 task :live_reload do
