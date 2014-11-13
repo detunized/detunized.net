@@ -2,8 +2,6 @@ require 'rmagick'
 
 module Convert
     # Image
-    WIDTH = 900
-    HEIGHT = 600
     JPEG_QUALITY = 85
 
     # Copyright
@@ -17,9 +15,6 @@ module Convert
 
     def self.convert src, dst, options = {}
         image = Magick::Image.read(src).first
-
-        # Resize
-        image.resize! WIDTH, HEIGHT
 
         # Poor man's shadow
         Magick::Draw.new.annotate(image, 0, 0, image.columns - OFFSET_X - 1, image.rows - OFFSET_Y + 1, COPYRIGHT) do
