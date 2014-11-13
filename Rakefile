@@ -17,7 +17,7 @@ task :setup do
 end
 
 task :generate do
-    sh "jekyll build"
+    sh "bundle exec jekyll build"
 end
 
 task :deploy => :generate do
