@@ -21,7 +21,7 @@ task :generate do
 end
 
 task :deploy => :generate do
-    sh "rsync -avPk -e ssh _site/ detunized.net:www/detunized.net/"
+    sh "rsync -avPk -e ssh _site/ raw.seedhost.eu:www/detunized.raw.seedhost.eu/detunized/detunized.net/"
 end
 
 task :backup => :generate do
