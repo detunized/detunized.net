@@ -8,7 +8,7 @@ task :setup do
     # Install dependencies
     sh "brew install imagemagick@6"
     sh "brew link --force imagemagick@6"
-    sh "bundle install --path vendor"
+    sh "bundle install --with author --path vendor"
 
     # Copy data from Dropbox and normalize permissions
     sh "rsync -avP ~/Dropbox/detunized.net/galleries ./"
