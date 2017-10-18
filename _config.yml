@@ -1,11 +1,15 @@
 # Jekyll config
 exclude:
-- Gemfile
-- Gemfile.lock
-- Guardfile
-- Rakefile
-- galleries
-- scripts
+    - Gemfile
+    - Gemfile.lock
+    - Guardfile
+    - Rakefile
+    - galleries
+    - scripts
+    - vendor
+
+plugins:
+    - jekyll-paginate
 
 permalink: html/:year-:month-:day-:title.html
 url: https://detunized.net

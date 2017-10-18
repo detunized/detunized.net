@@ -1,2 +1,5 @@
-_site
-galleries
+/_site
+/galleries
+
+/.bundle
+/vendor
