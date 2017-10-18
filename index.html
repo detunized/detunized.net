@@ -4,8 +4,8 @@ layout: index
 <div id="page">
     <div id="content">
         <div id="header">
-            <a href="/">{{ site.name }}</a>
-            <a id="icon" class="icon" href="/atom.xml">&AElig;</a>
+            <a href="{{ site.url }}/">{{ site.name }}</a>
+        <a id="icon" class="icon" href="{{ site.url }}/atom.xml">&AElig;</a>
         </div>
         <div id="posts">
             {% for post in paginator.posts %}
@@ -16,8 +16,8 @@ layout: index
                 {% endif %}
                 <div class="post {{ post_class }}">
                     <h2>{{ post.title }}</h2>
-                    <a href="{{ post.url }}">
-                        <img class="banner" src="/galleries/{{ post.folder }}/title.jpg" alt="{{ post.title }}">
+                    <a href="{{ site.url }}{{ post.url }}">
+                        <img class="banner" src="{{ site.image_host }}/galleries/{{ post.folder }}/title.jpg" alt="{{ post.title }}">
                     </a>
                 </div>
             {% endfor %}
@@ -25,14 +25,14 @@ layout: index
         <div id="navigation">
             <div id="older">
                 {% if paginator.next_page %}
-                    <a href="/page{{ paginator.next_page }}">
+                    <a href="{{ site.url }}/page{{ paginator.next_page }}/">
                         &larr; Older
                     </a>
                 {% endif %}
             </div>
             <div id="newer">
                 {% if paginator.previous_page %}
-                    <a href="/{% if paginator.previous_page > 1 %}page{{ paginator.previous_page }}{% endif %}">
+                    <a href="{{ site.url }}/{% if paginator.previous_page > 1 %}page{{ paginator.previous_page }}/{% endif %}">
                         Newer &rarr;
                     </a>
                 {% endif %}

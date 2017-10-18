@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>{{ page.title }}</title>
-    <link href="/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="{{ site.url }}/css/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <div id="page">
@@ -13,7 +13,7 @@
                 <a id="icon" class="icon" href="/">S</a>
             </div>
             {% for image in page.images %}
-                <img class="photo" src="/galleries/{{ page.folder }}/{{ image }}" alt="{{ image }}">
+                <img class="photo" src="{{ site.image_host }}/galleries/{{ page.folder }}/{{ image }}" alt="{{ image }}">
             {% endfor %}
             <div id="navigation">
                 <div id="older">

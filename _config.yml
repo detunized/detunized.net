@@ -13,6 +13,7 @@ plugins:
 
 permalink: html/:year-:month-:day-:title.html
 url: https://detunized.net
+image_host: https://raw.seedhost.eu/detunized/detunized.net
 paginate: 15
 
 # Custom site config
